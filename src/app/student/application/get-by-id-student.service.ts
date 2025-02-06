@@ -6,8 +6,8 @@ import { IStudentRepository } from '../domain/student.repository';
 @Injectable({
   providedIn: 'root',
 })
-export class GetByIdAsignatureService {
-  constructor(private studentRepository: IStudentRepository) {}
+export class GetByIdStudentService {
+  constructor(private studentRepository : IStudentRepository) {}
 
   execute(id: number): Observable<Student> {
     return this.studentRepository.getById(id);

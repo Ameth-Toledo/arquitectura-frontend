@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DriverAdapterHttpService } from '../../../asignature/infrastructure/driver-adapter-http/driver-adapter-http.service';
+import { DriverAdapterHttpServiceAsignature } from '../../../asignature/infrastructure/driver-adapter-http/driver-adapter-http.service';
 import { Asignature } from '../../../asignature/domain/entities/asignature.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ export class AsignaturesComponent implements OnInit {
   showDeleteModal = false;
   showAddModal = false;
 
-  constructor(private asignatureService: DriverAdapterHttpService) {}
+  constructor(private asignatureService: DriverAdapterHttpServiceAsignature) {}
 
   ngOnInit(): void {
     this.loadAsignatures();

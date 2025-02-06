@@ -5,8 +5,8 @@ import { IStudentRepository } from '../domain/student.repository';
 @Injectable({
   providedIn: 'root',
 })
-export class DeleteAsignatureService {
-  constructor(private studentRepository: IStudentRepository) {}
+export class DeleteStudentService {
+  constructor(private studentRepository : IStudentRepository) {}
 
   execute(id: number): Observable<void> {
     return this.studentRepository.delete(id);

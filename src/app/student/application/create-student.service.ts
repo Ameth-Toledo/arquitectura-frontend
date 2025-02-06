@@ -7,7 +7,7 @@ import { IStudentRepository } from '../domain/student.repository';
   providedIn: 'root',
 })
 export class CreateStudentService {
-  constructor(private studentRepository: IStudentRepository) {}
+  constructor(private studentRepository : IStudentRepository) {}
 
   execute(student: Student): Observable<Student> {
     return this.studentRepository.create(student);

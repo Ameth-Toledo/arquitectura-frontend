@@ -1,16 +1,16 @@
 export class Student {
-    id: number;
-    name: string;
-    lastName: string;
-    matricule: string;
-    age: number;
+    id_student: number;
+    name_student: string;
+    last_name_student: string;
+    matricule_student: string;
+    age_student: number;
   
-    constructor(id: number, name: string, lastName: string, matricule: string, age: number) {
-      this.id = id;
-      this.name = name;
-      this.lastName = lastName;
-      this.matricule = matricule;
-      this.age = age;
+    constructor(id_student: number, name_student: string, last_name_student: string, matricule_student: string, age_student: number) {
+      this.id_student = id_student;
+      this.name_student = name_student;
+      this.last_name_student = last_name_student;
+      this.matricule_student = matricule_student;
+      this.age_student = age_student;
     }
   }
   

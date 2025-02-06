@@ -7,9 +7,9 @@ import { IStudentRepository } from '../../domain/student.repository';
 @Injectable({
   providedIn: 'root'
 })
-export class DriverAdapterHttpService implements IStudentRepository {
+export class DriverAdapterHttpServiceStudent implements IStudentRepository {
 
-  private apiUrl = 'http://localhost:8080/students/';
+  private apiUrl = 'http://localhost:8080/students';
 
   constructor(private http: HttpClient) { }
 
@@ -22,14 +22,14 @@ export class DriverAdapterHttpService implements IStudentRepository {
   }
 
   getById(id: number): Observable<Student> {
-    return this.http.get<Student>(`${this.apiUrl}${id}`);
+    return this.http.get<Student>(`${this.apiUrl}/${id}`);
   }
-
-  update(id: number, student: Student): Observable<Student> {  // Corregido
-    return this.http.put<Student>(`${this.apiUrl}${id}`, student);
+  
+  update(id: number, student: Student): Observable<Student> {
+    return this.http.put<Student>(`${this.apiUrl}/${id}`, student);
   }
-
+  
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}${id}`);
-  }
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }  
 }

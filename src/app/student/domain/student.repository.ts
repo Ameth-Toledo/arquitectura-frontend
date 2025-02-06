@@ -1,10 +1,10 @@
 import { Observable } from "rxjs";
 import { Student } from "./entities/student.model";
 
-export interface IStudentRepository {
-    create(student: Student): Observable<Student>;
-    getAll(): Observable<Student[]>;
-    getById(id: number): Observable<Student>;
-    update(id: number, student: Student): Observable<Student>; // Corregido
-    delete(id: number): Observable<void>;
+export abstract class IStudentRepository {
+    abstract create(student: Student): Observable<Student>;
+    abstract getAll(): Observable<Student[]>;
+    abstract getById(id: number): Observable<Student>;
+    abstract update(id: number, student: Student): Observable<Student>; 
+    abstract delete(id: number): Observable<void>;
 }

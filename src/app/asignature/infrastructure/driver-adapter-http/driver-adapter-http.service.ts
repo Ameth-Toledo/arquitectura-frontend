@@ -6,7 +6,7 @@ import { Asignature } from '../../domain/entities/asignature.model';
 @Injectable({
   providedIn: 'root'
 })
-export class DriverAdapterHttpService {
+export class DriverAdapterHttpServiceAsignature {
   private apiUrl = 'http://localhost:8080/asignatures'; 
 
   constructor(private http: HttpClient) { }

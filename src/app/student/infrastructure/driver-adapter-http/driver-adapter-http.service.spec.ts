@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DriverAdapterHttpService } from './driver-adapter-http.service';
+import { DriverAdapterHttpServiceStudent } from './driver-adapter-http.service';
 
 describe('DriverAdapterHttpService', () => {
-  let service: DriverAdapterHttpService;
+  let service: DriverAdapterHttpServiceStudent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DriverAdapterHttpService);
+    service = TestBed.inject(DriverAdapterHttpServiceStudent);
   });
 
   it('should be created', () => {
