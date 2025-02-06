@@ -11,13 +11,19 @@
 .add-button {
     display: block;
     margin: 20px auto;
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #007bff;
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: #ff7f32;  
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.add-button:hover {
+    background-color: #ff5722;  
 }
 
 .table-container {
@@ -40,6 +46,12 @@
     text-transform: uppercase;
 }
 
+.table-heading {
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
 .table-data {
     padding: 12px;
     text-align: center;
@@ -49,18 +61,34 @@
 }
 
 .edit-button, .delete-button {
-    padding: 6px 12px;
-    font-size: 14px;
+    padding: 8px 15px;
+    font-size: 16px;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
-    margin-right: 5px;
-    background-color: #4caf50;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+.edit-button {
+    background-color: #ff7f32;  
     color: white;
+    text-align: left;
+}
+
+.edit-button:hover {
+    background-color: #ff5722;  
 }
 
 .delete-button {
-    background-color: #f44336;
+    background-color: #f44336;  
+    color: white;
+    text-align: right;
+}
+
+.delete-button:hover {
+    background-color: #e53935;  
 }
 
 .modal {
@@ -77,23 +105,30 @@
 
 .modal-content {
     background: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 30px;
+    border-radius: 10px;
     width: 400px;
     text-align: center;
 }
 
 .save-button, .cancel-button, .delete-confirm-button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     margin: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .save-button {
-    background-color: #4caf50;
+    background-color: #ff7f32;  
     color: white;
+}
+
+.save-button:hover {
+    background-color: #ff5722;
 }
 
 .cancel-button {
@@ -101,7 +136,31 @@
     color: black;
 }
 
+.cancel-button:hover {
+    background-color: #b0b0b0;
+}
+
 .delete-confirm-button {
-    background-color: #f44336;
+    background-color: #f44336;  
     color: white;
+}
+
+.delete-confirm-button:hover {
+    background-color: #e53935;  
+}
+
+i {
+    margin-right: 8px;
+}
+
+.modal-content {
+    text-align: left;
+}
+
+.modal-content .save-button, .modal-content .cancel-button, .modal-content .delete-confirm-button {
+    margin-left: 10px;
+}
+
+.modal-content .cancel-button {
+    float: right;
 }

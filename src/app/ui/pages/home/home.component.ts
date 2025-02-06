@@ -17,7 +17,6 @@ import { Student } from '../../../student/domain/entities/student.model';
 })
 export class HomeComponent implements OnInit {
   students: Student[] = [];
-  // Inicializamos selectedStudent con valores por defecto
   selectedStudent: Student = { 
     id_student: 0, 
     name_student: '', 
@@ -26,7 +25,6 @@ export class HomeComponent implements OnInit {
     age_student: 0 
   };
 
-  // Variables para controlar la visualización de cada modal
   isAddModalOpen: boolean = false;
   isEditModalOpen: boolean = false;
   isDeleteModalOpen: boolean = false;
@@ -53,7 +51,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // Abrir modal para agregar estudiante
   openAddStudentModal(): void {
     this.selectedStudent = { 
       id_student: 0, 
@@ -65,26 +62,22 @@ export class HomeComponent implements OnInit {
     this.isAddModalOpen = true;
   }
 
-  // Abrir modal para editar estudiante
   openEditStudentModal(student: Student): void {
     this.selectedStudent = { ...student };
     this.isEditModalOpen = true;
   }
 
-  // Abrir modal para eliminar estudiante
   openDeleteStudentModal(student: Student): void {
     this.selectedStudent = student;
     this.isDeleteModalOpen = true;
   }
 
-  // Cerrar todos los modales
   closeModal(): void {
     this.isAddModalOpen = false;
     this.isEditModalOpen = false;
     this.isDeleteModalOpen = false;
   }
 
-  // Agregar estudiante
   addStudent(): void {
     this.createStudentService.execute(this.selectedStudent).subscribe({
       next: () => {
@@ -97,7 +90,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // Actualizar estudiante
   updateStudent(): void {
     this.updateStudentService.execute(this.selectedStudent.id_student, this.selectedStudent).subscribe({
       next: () => {
@@ -110,7 +102,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // Eliminar estudiante
   deleteStudent(): void {
     this.deleteStudentService.execute(this.selectedStudent.id_student).subscribe({
       next: () => {

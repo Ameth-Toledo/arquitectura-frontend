@@ -50,7 +50,6 @@
     }
   }
   
-  /* Estilos para el modal */
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -69,7 +68,7 @@
     padding: 20px;
     border-radius: 5px;
     width: 300px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .modal-header {
@@ -83,7 +82,7 @@
     font-size: 18px;
   }
   
-  .close {
+  .close-btn {
     background: none;
     border: none;
     font-size: 24px;
@@ -100,7 +99,6 @@
     gap: 10px;
   }
   
-  /* Estilos para botones (puedes personalizarlos) */
   button.btn {
     padding: 8px 12px;
     border: none;
@@ -108,29 +106,75 @@
     cursor: pointer;
   }
   
-  button.btn-primary {
-    background-color: #007bff;
-    color: #fff;
+  .add-student-btn {
+    background-color: #0056b3; 
+    color: white;
+    display: block;
+    margin: 0 auto;
   }
   
-  button.btn-warning {
-    background-color: #f0ad4e;
-    color: #fff;
+  .edit-btn {
+    background-color: #f0ad4e; 
+    color: white;
     margin-right: 5px;
   }
   
-  button.btn-danger {
-    background-color: #d9534f;
-    color: #fff;
+  .delete-btn {
+    background-color: #d9534f; 
+    color: white;
   }
   
-  button.btn-success {
-    background-color: #5cb85c;
-    color: #fff;
+  .submit-btn {
+    background-color: #5cb85c; 
+    color: white;
   }
   
-  button.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
+  .cancel-btn {
+    background-color: #6c757d; 
+    color: white;
   }
+  
+  .table-header {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  .table-row:hover {
+    background-color: #e3f2fd;
+  }
+  
+  .table-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-input:focus {
+    border-color: #0056b3;
+    outline: none;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
   

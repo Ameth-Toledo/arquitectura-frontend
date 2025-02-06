@@ -2,65 +2,81 @@
 
 <h1 class="student-title">Asignaturas Registradas</h1>
 
-<button class="add-button" (click)="openAddModal()">➕ Agregar Asignatura</button>
+<button class="add-button" (click)="openAddModal()">
+  <i class="fas fa-plus-circle"></i> Agregar Asignatura
+</button>
 
 <div class="table-container">
-    <table class="student-table">
-        <thead class="table-header">
-            <tr class="header-row">
-                <th class="table-heading">ID</th>
-                <th class="table-heading">Nombre</th>
-                <th class="table-heading">Descripción</th>
-                <th class="table-heading">Acciones</th>
-            </tr>
-        </thead>
-        <tbody class="table-body">
-            <tr class="table-row" *ngFor="let asignature of asignatures">
-                <td class="table-data">{{ asignature.id }}</td>
-                <td class="table-data">{{ asignature.name }}</td>
-                <td class="table-data">{{ asignature.description }}</td>
-                <td class="table-data">
-                    <button class="edit-button" (click)="openEditModal(asignature)">✏️ Editar</button>
-                    <button class="delete-button" (click)="openDeleteModal(asignature)">🗑 Eliminar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="student-table">
+    <thead class="table-header">
+      <tr class="header-row">
+        <th class="table-heading">ID</th>
+        <th class="table-heading">Nombre</th>
+        <th class="table-heading">Descripción</th>
+        <th class="table-heading">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr class="table-row" *ngFor="let asignature of asignatures">
+        <td class="table-data">{{ asignature.id_asignature }}</td>
+        <td class="table-data">{{ asignature.name_asignature }}</td>
+        <td class="table-data">{{ asignature.description_asignature }}</td>
+        <td class="table-data">
+          <button class="edit-button" (click)="openEditModal(asignature)">
+            <i class="fas fa-edit"></i> Editar
+          </button>
+          <button class="delete-button" (click)="openDeleteModal(asignature)">
+            <i class="fas fa-trash"></i> Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<!-- Modal para agregar asignatura -->
 <div class="modal" *ngIf="showAddModal">
-    <div class="modal-content">
-        <h2>Agregar Asignatura</h2>
-        <label for="asignature-name">Nombre:</label>
-        <input id="asignature-name" type="text" [(ngModel)]="newAsignature.name" required>
+  <div class="modal-content">
+    <h2>Agregar Asignatura</h2>
+    <label for="asignature-name">Nombre:</label>
+    <input id="asignature-name" type="text" [(ngModel)]="selectedAsignature.name_asignature" required>
 
-        <label for="asignature-description">Descripción:</label>
-        <textarea id="asignature-description" [(ngModel)]="newAsignature.description" required></textarea>
+    <label for="asignature-description">Descripción:</label>
+    <textarea id="asignature-description" [(ngModel)]="selectedAsignature.description_asignature" required></textarea>
 
-        <button class="save-button" (click)="addAsignature()">Guardar</button>
-        <button class="cancel-button" (click)="closeAddModal()">Cancelar</button>
-    </div>
+    <button class="save-button" (click)="addAsignature()">
+      <i class="fas fa-save"></i> Guardar
+    </button>
+    <button class="cancel-button" (click)="closeModal()">
+      <i class="fas fa-times-circle"></i> Cancelar
+    </button>
+  </div>
 </div>
 
 <div class="modal" *ngIf="showEditModal && selectedAsignature">
-    <div class="modal-content">
-        <h2>Editar Asignatura</h2>
-        <label>Nombre:</label>
-        <input type="text" *ngIf="selectedAsignature" [(ngModel)]="selectedAsignature.name">
-        <label>Descripción:</label>
-        <textarea *ngIf="selectedAsignature" [(ngModel)]="selectedAsignature.description"></textarea>
-        <button class="save-button" (click)="updateAsignature()">Guardar</button>
-        <button class="cancel-button" (click)="closeEditModal()">Cancelar</button>
-    </div>
+  <div class="modal-content">
+    <h2>Editar Asignatura</h2>
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="selectedAsignature.name_asignature">
+    <label>Descripción:</label>
+    <textarea [(ngModel)]="selectedAsignature.description_asignature"></textarea>
+    <button class="save-button" (click)="updateAsignature()">
+      <i class="fas fa-save"></i> Guardar
+    </button>
+    <button class="cancel-button" (click)="closeModal()">
+      <i class="fas fa-times-circle"></i> Cancelar
+    </button>
+  </div>
 </div>
 
-<!-- Modal para eliminar asignatura -->
 <div class="modal" *ngIf="showDeleteModal">
-    <div class="modal-content">
-        <h2>¿Estás seguro de eliminar la asignatura?</h2>
-        <p><strong>{{ selectedAsignature?.name || 'Sin nombre' }}</strong></p>
-        <button class="delete-confirm-button" (click)="deleteAsignature()">Sí, eliminar</button>
-        <button class="cancel-button" (click)="closeDeleteModal()">Cancelar</button>
-    </div>
+  <div class="modal-content">
+    <h2>¿Estás seguro de eliminar la asignatura?</h2>
+    <p><strong>{{ selectedAsignature.name_asignature || 'Sin nombre' }}</strong></p>
+    <button class="delete-confirm-button" (click)="deleteAsignature()">
+      <i class="fas fa-trash-alt"></i> Sí, eliminar
+    </button>
+    <button class="cancel-button" (click)="closeModal()">
+      <i class="fas fa-times-circle"></i> Cancelar
+    </button>
+  </div>
 </div>

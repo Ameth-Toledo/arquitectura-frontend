@@ -2,112 +2,108 @@
 
 <h1 class="student-title">Estudiantes de la UP</h1>
 
-<!-- Botón para abrir la modal de agregar estudiante -->
-<button class="btn btn-primary" (click)="openAddStudentModal()">Agregar Estudiante</button>
+<button class="btn btn-primary add-student-btn" (click)="openAddStudentModal()">Agregar Estudiante</button>
 
 <div class="table-container">
   <table class="custom-table">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Matrícula</th>
-        <th>Edad</th>
-        <th>Acciones</th>
+        <th class="table-header">ID</th>
+        <th class="table-header">Nombre</th>
+        <th class="table-header">Apellido</th>
+        <th class="table-header">Matrícula</th>
+        <th class="table-header">Edad</th>
+        <th class="table-header">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let student of students">
-        <td>{{ student.id_student }}</td>
-        <td>{{ student.name_student }}</td>
-        <td>{{ student.last_name_student }}</td>
-        <td>{{ student.matricule_student }}</td>
-        <td>{{ student.age_student }}</td>
-        <td>
-          <button class="btn btn-warning" (click)="openEditStudentModal(student)">Editar</button>
-          <button class="btn btn-danger" (click)="openDeleteStudentModal(student)">Eliminar</button>
+      <tr *ngFor="let student of students" class="table-row">
+        <td class="table-data">{{ student.id_student }}</td>
+        <td class="table-data">{{ student.name_student }}</td>
+        <td class="table-data">{{ student.last_name_student }}</td>
+        <td class="table-data">{{ student.matricule_student }}</td>
+        <td class="table-data">{{ student.age_student }}</td>
+        <td class="table-actions">
+          <button class="btn btn-warning edit-btn" (click)="openEditStudentModal(student)">Editar</button>
+          <button class="btn btn-danger delete-btn" (click)="openDeleteStudentModal(student)">Eliminar</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- Modal para agregar estudiante -->
-<div class="modal-overlay" *ngIf="isAddModalOpen">
+<div class="modal-overlay add-modal" *ngIf="isAddModalOpen">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">Agregar Estudiante</h5>
-      <button type="button" class="close" (click)="closeModal()">&times;</button>
+      <button type="button" class="close close-btn" (click)="closeModal()">&times;</button>
     </div>
     <div class="modal-body">
-      <form (ngSubmit)="addStudent()">
+      <form (ngSubmit)="addStudent()" class="form">
         <div class="form-group">
-          <label for="name">Nombre</label>
-          <input id="name" [(ngModel)]="selectedStudent.name_student" name="name_student" required />
+          <label for="name" class="form-label">Nombre</label>
+          <input id="name" [(ngModel)]="selectedStudent.name_student" name="name_student" class="form-input" required />
         </div>
         <div class="form-group">
-          <label for="lastName">Apellido</label>
-          <input id="lastName" [(ngModel)]="selectedStudent.last_name_student" name="last_name_student" required />
+          <label for="lastName" class="form-label">Apellido</label>
+          <input id="lastName" [(ngModel)]="selectedStudent.last_name_student" name="last_name_student" class="form-input" required />
         </div>
         <div class="form-group">
-          <label for="matricule">Matrícula</label>
-          <input id="matricule" [(ngModel)]="selectedStudent.matricule_student" name="matricule_student" required />
+          <label for="matricule" class="form-label">Matrícula</label>
+          <input id="matricule" [(ngModel)]="selectedStudent.matricule_student" name="matricule_student" class="form-input" required />
         </div>
         <div class="form-group">
-          <label for="age">Edad</label>
-          <input id="age" type="number" [(ngModel)]="selectedStudent.age_student" name="age_student" required />
+          <label for="age" class="form-label">Edad</label>
+          <input id="age" type="number" [(ngModel)]="selectedStudent.age_student" name="age_student" class="form-input" required />
         </div>
-        <button type="submit">Agregar Estudiante</button>
+        <button type="submit" class="btn btn-success submit-btn">Agregar Estudiante</button>
       </form>
     </div>
   </div>
 </div>
 
-<!-- Modal para editar estudiante -->
-<div class="modal-overlay" *ngIf="isEditModalOpen">
+<div class="modal-overlay edit-modal" *ngIf="isEditModalOpen">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">Editar Estudiante</h5>
-      <button type="button" class="close" (click)="closeModal()">&times;</button>
+      <button type="button" class="close close-btn" (click)="closeModal()">&times;</button>
     </div>
     <div class="modal-body">
-      <form (ngSubmit)="updateStudent()">
+      <form (ngSubmit)="updateStudent()" class="form">
         <div class="form-group">
-          <label for="nameEdit">Nombre</label>
-          <input id="nameEdit" [(ngModel)]="selectedStudent.name_student" name="name_student" required />
+          <label for="nameEdit" class="form-label">Nombre</label>
+          <input id="nameEdit" [(ngModel)]="selectedStudent.name_student" name="name_student" class="form-input" required />
         </div>
         <div class="form-group">
-          <label for="lastNameEdit">Apellido</label>
-          <input id="lastNameEdit" [(ngModel)]="selectedStudent.last_name_student" name="last_name_student" required />
+          <label for="lastNameEdit" class="form-label">Apellido</label>
+          <input id="lastNameEdit" [(ngModel)]="selectedStudent.last_name_student" name="last_name_student" class="form-input" required />
         </div>
         <div class="form-group">
-          <label for="matriculeEdit">Matrícula</label>
-          <input id="matriculeEdit" [(ngModel)]="selectedStudent.matricule_student" name="matricule_student" required />
+          <label for="matriculeEdit" class="form-label">Matrícula</label>
+          <input id="matriculeEdit" [(ngModel)]="selectedStudent.matricule_student" name="matricule_student" class="form-input" required />
         </div>
         <div class="form-group">
-          <label for="ageEdit">Edad</label>
-          <input id="ageEdit" type="number" [(ngModel)]="selectedStudent.age_student" name="age_student" required />
+          <label for="ageEdit" class="form-label">Edad</label>
+          <input id="ageEdit" type="number" [(ngModel)]="selectedStudent.age_student" name="age_student" class="form-input" required />
         </div>
-        <button type="submit">Actualizar Estudiante</button>
+        <button type="submit" class="btn btn-primary submit-btn">Actualizar Estudiante</button>
       </form>
     </div>
   </div>
 </div>
 
-<!-- Modal para eliminar estudiante -->
-<div class="modal-overlay" *ngIf="isDeleteModalOpen">
+<div class="modal-overlay delete-modal" *ngIf="isDeleteModalOpen">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">Confirmación de Eliminación</h5>
-      <button type="button" class="close" (click)="closeModal()">&times;</button>
+      <button type="button" class="close close-btn" (click)="closeModal()">&times;</button>
     </div>
     <div class="modal-body">
       <p>¿Estás seguro de que deseas eliminar a este estudiante?</p>
     </div>
     <div class="modal-footer">
-      <button (click)="closeModal()">Cancelar</button>
-      <button (click)="deleteStudent()">Eliminar</button>
+      <button class="btn btn-secondary cancel-btn" (click)="closeModal()">Cancelar</button>
+      <button class="btn btn-danger delete-btn" (click)="deleteStudent()">Eliminar</button>
     </div>
   </div>
 </div>

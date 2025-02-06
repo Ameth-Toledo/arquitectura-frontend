@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DriverAdapterHttpServiceAsignature } from '../../../asignature/infrastructure/driver-adapter-http/driver-adapter-http.service';
-import { Asignature } from '../../../asignature/domain/entities/asignature.model';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../components/header/header.component';
+import { FormsModule } from '@angular/forms';
+import { Asignature } from '../../../asignature/domain/entities/asignature.model';
+import { GetAllAsignatureService } from '../../../asignature/application/get-all-asignature.service';
+import { CreateAsignatureService } from '../../../asignature/application/create-asignature.service';
+import { UpdateAsignatureService } from '../../../asignature/application/update-asignature.service';
+import { DeleteAsignatureService } from '../../../asignature/application/delete-asignature.service';
 
 @Component({
   selector: 'app-asignatures',
@@ -14,93 +17,96 @@ import { HeaderComponent } from '../../components/header/header.component';
 })
 export class AsignaturesComponent implements OnInit {
   asignatures: Asignature[] = [];
-  selectedAsignature: Asignature | null = null;
-  newAsignature: Asignature = new Asignature(0, '', '');
-  showEditModal = false;
-  showDeleteModal = false;
-  showAddModal = false;
+  selectedAsignature: Asignature = {
+    id_asignature: 0,
+    name_asignature: '',
+    description_asignature: ''
+  };
 
-  constructor(private asignatureService: DriverAdapterHttpServiceAsignature) {}
+  showAddModal: boolean = false;
+  showEditModal: boolean = false;
+  showDeleteModal: boolean = false;
+
+  constructor(
+    private getAllAsignaturesService: GetAllAsignatureService,
+    private createAsignatureService: CreateAsignatureService,
+    private updateAsignatureService: UpdateAsignatureService,
+    private deleteAsignatureService: DeleteAsignatureService
+  ) {}
 
   ngOnInit(): void {
     this.loadAsignatures();
   }
 
   loadAsignatures(): void {
-    this.asignatureService.getAll().subscribe(data => {
-      console.log("Datos recibidos:", data);
-      this.asignatures = data;
-    }, error => {
-      console.error("Error al cargar asignaturas:", error);
+    this.getAllAsignaturesService.execute().subscribe({
+      next: (data: Asignature[]) => {
+        this.asignatures = data;
+      },
+      error: (err) => {
+        console.error("Error al cargar las asignaturas: ", err);
+      }
     });
-  }  
+  }
 
   openAddModal(): void {
-    this.newAsignature = new Asignature(0, '', '');
+    this.selectedAsignature = {
+      id_asignature: 0,
+      name_asignature: '',
+      description_asignature: ''
+    };
     this.showAddModal = true;
   }
 
-  closeAddModal(): void {
-    this.showAddModal = false;
-  }
-
-  addAsignature(): void {
-    if (!this.newAsignature.name.trim() || !this.newAsignature.description.trim()) {
-      alert("Los campos no pueden estar vacíos.");
-      console.error("Los campos no pueden estar vacíos.");
-      return;
-    }
-  
-    this.asignatureService.create(this.newAsignature).subscribe(() => {
-      this.loadAsignatures();
-      this.closeAddModal();
-    });
-  }
-  
-
   openEditModal(asignature: Asignature): void {
-    this.selectedAsignature = { ...asignature }; 
+    this.selectedAsignature = { ...asignature };
     this.showEditModal = true;
-  }  
-
-  closeEditModal(): void {
-    this.showEditModal = false;
-    this.selectedAsignature = null;
   }
-
-  updateAsignature(): void {
-    if (!this.selectedAsignature || !this.selectedAsignature.name.trim() || !this.selectedAsignature.description.trim()) {
-      console.error("Los campos no pueden estar vacíos.");
-      return;
-    }
-  
-    this.asignatureService.update(this.selectedAsignature.id!, this.selectedAsignature)
-      .subscribe(() => {
-        this.loadAsignatures();
-        this.closeEditModal();
-      });
-  }  
 
   openDeleteModal(asignature: Asignature): void {
     this.selectedAsignature = asignature;
     this.showDeleteModal = true;
   }
 
-  closeDeleteModal(): void {
+  closeModal(): void {
+    this.showAddModal = false;
+    this.showEditModal = false;
     this.showDeleteModal = false;
-    this.selectedAsignature = null;
+  }
+
+  addAsignature(): void {
+    this.createAsignatureService.execute(this.selectedAsignature).subscribe({
+      next: () => {
+        this.loadAsignatures();
+        this.closeModal();
+      },
+      error: (err) => {
+        console.error("Error al agregar asignatura: ", err);
+      }
+    });
+  }
+
+  updateAsignature(): void {
+    this.updateAsignatureService.execute(this.selectedAsignature.id_asignature, this.selectedAsignature).subscribe({
+      next: () => {
+        this.loadAsignatures();
+        this.closeModal();
+      },
+      error: (err) => {
+        console.error("Error al actualizar asignatura:", err);
+      }
+    });
   }
 
   deleteAsignature(): void {
-    if (!this.selectedAsignature || !this.selectedAsignature.id) {
-      console.error("No se encontró el ID de la asignatura para eliminar.");
-      return;
-    }
-  
-    this.asignatureService.delete(this.selectedAsignature.id)
-      .subscribe(() => {
+    this.deleteAsignatureService.execute(this.selectedAsignature.id_asignature).subscribe({
+      next: () => {
         this.loadAsignatures();
-        this.closeDeleteModal();
-      });
-  }  
+        this.closeModal();
+      },
+      error: (err) => {
+        console.error("Error al eliminar asignatura:", err);
+      }
+    });
+  }
 }
