@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
 import { Asignature } from './entities/asignature.model';
 
-export interface IAsignatureRepository {
-  create(asignature: Asignature): Observable<Asignature>;
-  update(id: string, asignature: Asignature): Observable<Asignature>;
-  delete(id: string): Observable<void>;
-  getById(id: string): Observable<Asignature>;
-  getAll(): Observable<Asignature[]>;
+export abstract class IAsignatureRepository {
+  abstract create(asignature: Asignature): Observable<Asignature>;
+  abstract update(id: number, asignature: Asignature): Observable<Asignature>;
+  abstract delete(id: number): Observable<void>;
+  abstract getById(id: number): Observable<Asignature>;
+  abstract getAll(): Observable<Asignature[]>;
 }

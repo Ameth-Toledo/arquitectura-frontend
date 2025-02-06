@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Asignature } from '../domain/entities/asignature.model';
-import { IAsignatureRepository } from '../domain/asignature.repository';
-import { Observable } from 'rxjs';
+import { Injectable, Inject } from "@angular/core";
+import { Observable } from "rxjs";
+import { IAsignatureRepository } from "../domain/asignature.repository";
+import { Asignature } from "../domain/entities/asignature.model";
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class UpdateAsignatureService {
-  constructor(private asignatureRepository: IAsignatureRepository) {}
+    constructor(private asignatureRepository: IAsignatureRepository) {}
 
-  execute(asignature: Asignature): Observable<Asignature> {
-    return this.asignatureRepository.update(asignature);
-  }
+    execute(id: number, asignature: Asignature): Observable<Asignature> {
+        return this.asignatureRepository.update(id, asignature);
+    }
 }

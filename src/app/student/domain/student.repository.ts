@@ -5,6 +5,6 @@ export interface IStudentRepository {
     create(student: Student): Observable<Student>;
     getAll(): Observable<Student[]>;
     getById(id: number): Observable<Student>;
-    update(student: Student): Observable<Student>;
-    delete(id: number): Observable<any>;
+    update(id: number, student: Student): Observable<Student>; // Corregido
+    delete(id: number): Observable<void>;
 }

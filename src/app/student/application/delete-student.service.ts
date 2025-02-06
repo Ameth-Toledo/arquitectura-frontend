@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IAsignatureRepository } from '../domain/asignature.repository';
+import { IStudentRepository } from '../domain/student.repository';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeleteAsignatureService {
-  constructor(private asignatureRepository: IAsignatureRepository) {}
+  constructor(private studentRepository: IStudentRepository) {}
 
   execute(id: number): Observable<void> {
-    return this.asignatureRepository.delete(id);
+    return this.studentRepository.delete(id);
   }
 }

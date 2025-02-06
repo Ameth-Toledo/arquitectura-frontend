@@ -1,0 +1,66 @@
+<app-header class="app-header"></app-header>
+
+<h1 class="student-title">Asignaturas Registradas</h1>
+
+<button class="add-button" (click)="openAddModal()">➕ Agregar Asignatura</button>
+
+<div class="table-container">
+    <table class="student-table">
+        <thead class="table-header">
+            <tr class="header-row">
+                <th class="table-heading">ID</th>
+                <th class="table-heading">Nombre</th>
+                <th class="table-heading">Descripción</th>
+                <th class="table-heading">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="table-body">
+            <tr class="table-row" *ngFor="let asignature of asignatures">
+                <td class="table-data">{{ asignature.id }}</td>
+                <td class="table-data">{{ asignature.name }}</td>
+                <td class="table-data">{{ asignature.description }}</td>
+                <td class="table-data">
+                    <button class="edit-button" (click)="openEditModal(asignature)">✏️ Editar</button>
+                    <button class="delete-button" (click)="openDeleteModal(asignature)">🗑 Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal para agregar asignatura -->
+<div class="modal" *ngIf="showAddModal">
+    <div class="modal-content">
+        <h2>Agregar Asignatura</h2>
+        <label for="asignature-name">Nombre:</label>
+        <input id="asignature-name" type="text" [(ngModel)]="newAsignature.name" required>
+
+        <label for="asignature-description">Descripción:</label>
+        <textarea id="asignature-description" [(ngModel)]="newAsignature.description" required></textarea>
+
+        <button class="save-button" (click)="addAsignature()">Guardar</button>
+        <button class="cancel-button" (click)="closeAddModal()">Cancelar</button>
+    </div>
+</div>
+
+<div class="modal" *ngIf="showEditModal && selectedAsignature">
+    <div class="modal-content">
+        <h2>Editar Asignatura</h2>
+        <label>Nombre:</label>
+        <input type="text" *ngIf="selectedAsignature" [(ngModel)]="selectedAsignature.name">
+        <label>Descripción:</label>
+        <textarea *ngIf="selectedAsignature" [(ngModel)]="selectedAsignature.description"></textarea>
+        <button class="save-button" (click)="updateAsignature()">Guardar</button>
+        <button class="cancel-button" (click)="closeEditModal()">Cancelar</button>
+    </div>
+</div>
+
+<!-- Modal para eliminar asignatura -->
+<div class="modal" *ngIf="showDeleteModal">
+    <div class="modal-content">
+        <h2>¿Estás seguro de eliminar la asignatura?</h2>
+        <p><strong>{{ selectedAsignature?.name || 'Sin nombre' }}</strong></p>
+        <button class="delete-confirm-button" (click)="deleteAsignature()">Sí, eliminar</button>
+        <button class="cancel-button" (click)="closeDeleteModal()">Cancelar</button>
+    </div>
+</div>
