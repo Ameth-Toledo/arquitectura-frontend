@@ -7,7 +7,7 @@ import { Asignature } from '../../domain/entities/asignature.model';
   providedIn: 'root'
 })
 export class DriverAdapterHttpServiceAsignature {
-  private apiUrl = 'http://localhost:8080/asignatures'; 
+  private apiUrl = 'http://13.216.136.239:8087/asignatures'; 
 
   constructor(private http: HttpClient) { }
 

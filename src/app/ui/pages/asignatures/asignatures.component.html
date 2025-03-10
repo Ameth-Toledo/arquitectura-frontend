@@ -80,3 +80,12 @@
     </button>
   </div>
 </div>
+
+<div *ngIf="notificationMessage" class="modal">
+  <div class="modal-content">
+    <p>{{ notificationMessage }}</p>
+    <button class="cancel-button" (click)="closeNotificationModal()">
+      <i class="fas fa-times-circle"></i> Cerrar
+    </button>
+  </div>
+</div>

@@ -13,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     { provide: IStudentRepository, useClass: DriverAdapterHttpServiceStudent },
-    { provide: IAsignatureRepository, useClass: DriverAdapterHttpServiceAsignature}
+    { provide: IAsignatureRepository, useClass: DriverAdapterHttpServiceAsignature }
   ]
 };

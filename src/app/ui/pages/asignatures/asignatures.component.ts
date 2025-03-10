@@ -7,6 +7,7 @@ import { GetAllAsignatureService } from '../../../asignature/application/get-all
 import { CreateAsignatureService } from '../../../asignature/application/create-asignature.service';
 import { UpdateAsignatureService } from '../../../asignature/application/update-asignature.service';
 import { DeleteAsignatureService } from '../../../asignature/application/delete-asignature.service';
+import { WebSocketService } from '../../../asignature/infrastructure/driver-adapter-amqp/driver-adapter-amqp.service';
 
 @Component({
   selector: 'app-asignatures',
@@ -26,16 +27,19 @@ export class AsignaturesComponent implements OnInit {
   showAddModal: boolean = false;
   showEditModal: boolean = false;
   showDeleteModal: boolean = false;
+  notificationMessage: string = ''; 
 
   constructor(
     private getAllAsignaturesService: GetAllAsignatureService,
     private createAsignatureService: CreateAsignatureService,
     private updateAsignatureService: UpdateAsignatureService,
-    private deleteAsignatureService: DeleteAsignatureService
+    private deleteAsignatureService: DeleteAsignatureService,
+    private webSocketService: WebSocketService 
   ) {}
 
   ngOnInit(): void {
     this.loadAsignatures();
+    this.listenForNotifications();
   }
 
   loadAsignatures(): void {
@@ -47,6 +51,20 @@ export class AsignaturesComponent implements OnInit {
         console.error("Error al cargar las asignaturas: ", err);
       }
     });
+  }
+
+  listenForNotifications(): void {
+    this.webSocketService.getNotification().subscribe((message: string) => {
+      this.notificationMessage = message; 
+    });
+  }
+
+  openNotificationModal(): void {
+    this.notificationMessage = 'Este es un mensaje de notificación';
+  }
+
+  closeNotificationModal(): void {
+    this.notificationMessage = ''; 
   }
 
   openAddModal(): void {
